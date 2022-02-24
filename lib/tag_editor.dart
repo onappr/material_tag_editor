@@ -157,9 +157,14 @@ class _TagsEditorState extends State<TagEditor> {
     }
 
     if (string.length > previousText.length) {
+      if (string.length - previousText.length == 2) {
+        // Extra space is coming remove that
+        string = string.trim();
+      }
       // Add case
       final newChar = string[string.length - 1];
       if (widget.delimiters.contains(newChar)) {
+        print('hererere $newChar');
         final targetString = string.substring(0, string.length - 1);
         if (targetString.isNotEmpty) {
           _onTagChanged(targetString);
